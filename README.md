@@ -7,5 +7,5 @@ This is my [neovim](https://neovim.io/) setup that I started experimenting with 
 * [vim-pandoc](https://github.com/vim-pandoc/vim-pandoc): edit markdown, especially for pandoc
 * [markdown-preview](https://github.com/iamcco/markdown-preview.vim): view markdown in browser while editing
 * [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig): language server support for python, ruby, javascript, etc
-* [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua): a file explorer for vim
+* [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua): a file explorer
 
