@@ -73,8 +73,14 @@ lua << EOF
     -- require('completion').on_attach()
   end
 
-  require'lspconfig'.pyright.setup{}
-  require'lspconfig'.solargraph.setup{}
+  require'lspconfig'.pyright.setup{
+    on_attach = custom_lsp_attach
+  }
+
+  require'lspconfig'.solargraph.setup {
+    on_attach = custom_lsp_attach
+  }
+
   require'lspconfig'.tsserver.setup{
     on_attach = custom_lsp_attach
   }
