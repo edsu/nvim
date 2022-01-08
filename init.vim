@@ -45,7 +45,28 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'pangloss/vim-javascript'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+Plug 'folke/trouble.nvim'
+Plug 'junegunn/goyo.vim'
 call plug#end()
+
+" \1 to go to tab 1, etc
+nnoremap <leader>1 1gt
+nnoremap <leader>2 2gt
+nnoremap <leader>3 3gt
+nnoremap <leader>4 4gt
+nnoremap <leader>5 5gt
+
+" Tab navigation like Firefox.
+nnoremap <C-S-tab> :tabprevious<CR>
+nnoremap <C-tab>   :tabnext<CR>
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+inoremap <C-tab>   <Esc>:tabnext<CR>i
+inoremap <C-t>     <Esc>:tabnew<CR>
+
+" Toggle File Tree View
+nnoremap <C-space> :NvimTreeToggle<CR>
 
 augroup pandoc_syntax
   au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
@@ -93,4 +114,9 @@ lua << EOF
     }
   }
 
+  require'trouble'.setup {}
+
 EOF
+
+
+
