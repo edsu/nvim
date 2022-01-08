@@ -8,4 +8,5 @@ This is my [neovim](https://neovim.io/) setup that I started experimenting with 
 * [markdown-preview](https://github.com/iamcco/markdown-preview.vim): view markdown in browser while editing
 * [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig): language server support for python, ruby, javascript, etc
 * [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua): a file explorer
+* [goyo](https://github.com/junegunn/goyo.vim): distraction free writing
 
