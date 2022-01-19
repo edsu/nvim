@@ -15,8 +15,10 @@ Plug('kyazdani42/nvim-tree.lua')
 Plug('pangloss/vim-javascript')
 Plug('folke/trouble.nvim')
 Plug('junegunn/goyo.vim')
-Plug('iamcco/markdown-preview.nvim', { d = 'cd app && yarn install'})
+Plug('iamcco/markdown-preview.nvim', {['do'] = 'cd app && yarn install'})
 Plug('catppuccin/nvim', {as = 'catppuccin'})
+Plug('akinsho/bufferline.nvim')
+Plug('chrisbra/unicode.vim')
 vim.call('plug#end')
 
 vim.g['airline_theme'] = 'dark'
@@ -46,7 +48,7 @@ local custom_lsp_attach = function(client)
   -- require('completion').on_attach()
 end
 
-require('lspconfig').pyright.setup{
+require('lspconfig').pyright.setup {
   on_attach = custom_lsp_attach
 }
 
@@ -67,4 +69,18 @@ require('nvim-tree').setup {
 }
 
 require('trouble').setup {}
+
+--- require('markdownpreview').setup {}
+
+require('bufferline').setup {
+  options = {
+    numbers = "buffer_id",
+    offsets = {{
+      filetype = "NvimTree",
+      text = "files",
+      highlight = "Directory",
+      text_align = "left"
+    }}
+  }
+}
 
