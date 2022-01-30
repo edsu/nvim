@@ -10,3 +10,5 @@ This is my [neovim](https://neovim.io/) setup that I started experimenting with 
 * [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua): a file explorer
 * [goyo](https://github.com/junegunn/goyo.vim): distraction free writing
 
+For the airline bar to work right the powerline fonts need to be available. The best way I've found to get these setup is to follow the [instructions](https://github.com/powerline/fonts).
+
