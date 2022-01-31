@@ -12,7 +12,7 @@ This is my [neovim](https://neovim.io/) setup that I started experimenting with 
 
 For powerline and nvim-tree to display properly a [NerdTree] font is needed. Download one like Inconsolata, Hack, etc and:
 
-1. unzip 
+1. unzip <font.zip>
 2. mv *.ttf ~/.local/share/fonts
 3. fc-cache -v
 
