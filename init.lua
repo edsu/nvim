@@ -15,7 +15,6 @@ Plug('kyazdani42/nvim-tree.lua')
 Plug('pangloss/vim-javascript')
 Plug('folke/trouble.nvim')
 Plug('junegunn/goyo.vim')
-Plug('iamcco/markdown-preview.nvim', {['do'] = 'cd app && yarn install'})
 Plug('catppuccin/nvim', {as = 'catppuccin'})
 Plug('akinsho/bufferline.nvim')
 Plug('chrisbra/unicode.vim')
@@ -69,8 +68,6 @@ require('nvim-tree').setup {
 }
 
 require('trouble').setup {}
-
---- require('markdownpreview').setup {}
 
 require('bufferline').setup {
   options = {
