@@ -18,6 +18,8 @@ Plug('junegunn/goyo.vim')
 Plug('catppuccin/nvim', {as = 'catppuccin'})
 Plug('akinsho/bufferline.nvim')
 Plug('chrisbra/unicode.vim')
+Plug('rinx/nvim-ripgrep')
+Plug('f-person/git-blame.nvim')
 vim.call('plug#end')
 
 vim.g['airline_theme'] = 'dark'
@@ -80,4 +82,9 @@ require('bufferline').setup {
     }}
   }
 }
+
+require('nvim-ripgrep').setup {}
+
+vim.g['gitblame_enabled'] = 0
+
 

@@ -48,3 +48,6 @@ augroup pandoc_syntax
 augroup END
 
 autocmd FileType ruby setlocal omnifunc=LanguageClient#complete
+
+" would be nice to do this in init.lua
+command! Rg lua require'nvim-ripgrep'.grep()
