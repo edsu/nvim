@@ -26,19 +26,11 @@ filetype plugin on
 filetype indent on
 
 " \1 to go to tab 1, etc
-nnoremap <leader>1 1gt
-nnoremap <leader>2 2gt
-nnoremap <leader>3 3gt
-nnoremap <leader>4 4gt
-nnoremap <leader>5 5gt
-
-" Tab navigation like Firefox.
-nnoremap <C-S-tab> :tabprevious<CR>
-nnoremap <C-tab>   :tabnext<CR>
-nnoremap <C-t>     :tabnew<CR>
-inoremap <C-S-tab> <Esc>:tabprevious<CR>i
-inoremap <C-tab>   <Esc>:tabnext<CR>i
-inoremap <C-t>     <Esc>:tabnew<CR>
+nnoremap <leader>1 :b1<CR>
+nnoremap <leader>2 :b2<CR>
+nnoremap <leader>3 :b3<CR>
+nnoremap <leader>4 :b4<CR>
+nnoremap <leader>5 :b5<CR>
 
 " Toggle File Tree View
 nnoremap <C-space> :NvimTreeToggle<CR>
@@ -48,6 +40,3 @@ augroup pandoc_syntax
 augroup END
 
 autocmd FileType ruby setlocal omnifunc=LanguageClient#complete
-
-" would be nice to do this in init.lua
-command! Rg lua require'nvim-ripgrep'.grep()

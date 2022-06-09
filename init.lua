@@ -20,6 +20,9 @@ Plug('akinsho/bufferline.nvim')
 Plug('chrisbra/unicode.vim')
 Plug('rinx/nvim-ripgrep')
 Plug('f-person/git-blame.nvim')
+Plug('nvim-lua/plenary.nvim')
+Plug('nvim-telescope/telescope.nvim')
+Plug('ellisonleao/glow.nvim')
 vim.call('plug#end')
 
 vim.g['airline_theme'] = 'dark'
@@ -28,6 +31,7 @@ vim.g['pandoc#modules#disabled'] = {'folding'}
 vim.g['nvim_tree_git_hl'] = 1
 vim.g['nvim_tree_highlight_opened_files'] = 1
 vim.g['mkdp_auto_start'] = 0
+vim.g['gitblame_enabled'] = 0
 
 vim.cmd('colorscheme catppuccin')
 
@@ -85,6 +89,11 @@ require('bufferline').setup {
 
 require('nvim-ripgrep').setup {}
 
-vim.g['gitblame_enabled'] = 0
+require('telescope').setup {}
 
+vim.api.nvim_set_keymap('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<CR>", {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>fg', "<cmd>lua require('telescope.builtin').live_grep()<CR>", {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>fb', "<cmd>lua require('telescope.builtin').buffers()<CR>", {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<CR>", {noremap = true})
 
+vim.g.glow_border = "double"
