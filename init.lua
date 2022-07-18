@@ -28,8 +28,6 @@ vim.call('plug#end')
 vim.g['airline_theme'] = 'dark'
 vim.g['airline_powerline_fonts'] = 1
 vim.g['pandoc#modules#disabled'] = {'folding'}
-vim.g['nvim_tree_git_hl'] = 1
-vim.g['nvim_tree_highlight_opened_files'] = 1
 vim.g['mkdp_auto_start'] = 0
 vim.g['gitblame_enabled'] = 0
 
@@ -66,9 +64,13 @@ require('lspconfig').tsserver.setup{
 }
 
 require('nvim-tree').setup {
+  open_on_tab = true,
+  renderer = {
+    highlight_git = true,
+    highlight_opened_files = "all"
+  },
   view = {
     width = 30,
-    open_on_tab = true,
     hide_root_folder = true,
   }
 }
