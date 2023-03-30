@@ -17,13 +17,17 @@ For powerline and nvim-tree to display properly a [NerdTree] font is needed. Dow
 2. mv *.ttf ~/.local/share/fonts
 3. fc-cache -v
 
+For language support from [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md):
+
+    $ npm install -g pyright typescript-language-server typescript
+    $ brew install rust-analyzer
+    $ gem install solargraph
+    $ solargraph download-core
+    $ yard docs gems
+ 
 For Markdown preview with [Glow] to work that needs to be installed:
 
     brew install glow
-
-For TypeScript things to work you'll need to:
-
-    npm install -g typescript-language-server typescript
-
+   
 [NerdTree]: https://www.nerdfonts.com/
 [Glow]: https://github.com/charmbracelet/glow

@@ -40,3 +40,6 @@ augroup pandoc_syntax
 augroup END
 
 autocmd FileType ruby setlocal omnifunc=LanguageClient#complete
+
+let g:vimwiki_list = [{ 'path': '~/Dropbox/Journal/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_url_maxsave=0

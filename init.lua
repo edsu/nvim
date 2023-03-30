@@ -23,6 +23,7 @@ Plug('f-person/git-blame.nvim')
 Plug('nvim-lua/plenary.nvim')
 Plug('nvim-telescope/telescope.nvim')
 Plug('ellisonleao/glow.nvim')
+Plug('vimwiki/vimwiki')
 vim.call('plug#end')
 
 vim.g['airline_theme'] = 'dark'
@@ -59,7 +60,11 @@ require('lspconfig').solargraph.setup {
   on_attach = custom_lsp_attach
 }
 
-require('lspconfig').tsserver.setup{
+require('lspconfig').tsserver.setup {
+  on_attach = custom_lsp_attach
+}
+
+require('lspconfig').rust_analyzer.setup {
   on_attach = custom_lsp_attach
 }
 
@@ -71,7 +76,7 @@ require('nvim-tree').setup {
   },
   view = {
     width = 30,
-    hide_root_folder = true,
+    hide_root_folder = true
   }
 }
 
