@@ -32,6 +32,9 @@ nnoremap <leader>3 :b3<CR>
 nnoremap <leader>4 :b4<CR>
 nnoremap <leader>5 :b5<CR>
 
+" Copy to clipboard with ctrl-c when in visual mode
+vnoremap <C-c> "*y
+
 " Toggle File Tree View
 nnoremap <C-space> :NvimTreeToggle<CR>
 

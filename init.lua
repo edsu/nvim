@@ -10,8 +10,9 @@ Plug('vim-pandoc/vim-pandoc-syntax')
 Plug('preservim/vim-pencil')
 Plug('neovim/nvim-lspconfig')
 Plug('microsoft/pyright')
-Plug('kyazdani42/nvim-web-devicons')
-Plug('kyazdani42/nvim-tree.lua')
+Plug('nvim-tree/nvim-web-devicons')
+Plug('nvim-tree/nvim-tree.lua')
+
 Plug('pangloss/vim-javascript')
 Plug('folke/trouble.nvim')
 Plug('junegunn/goyo.vim')
@@ -24,20 +25,16 @@ Plug('nvim-lua/plenary.nvim')
 Plug('nvim-telescope/telescope.nvim')
 Plug('ellisonleao/glow.nvim')
 Plug('vimwiki/vimwiki')
+Plug('L3MON4D3/LuaSnip')
 vim.call('plug#end')
 
-vim.g['airline_theme'] = 'dark'
-vim.g['airline_powerline_fonts'] = 1
-vim.g['pandoc#modules#disabled'] = {'folding'}
-vim.g['mkdp_auto_start'] = 0
-vim.g['gitblame_enabled'] = 0
-
-vim.cmd('colorscheme catppuccin')
 
 local custom_lsp_attach = function(client)
   -- See `:help nvim_buf_set_keymap()` for more information
   vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', {noremap = true})
-  vim.api.nvim_buf_set_keymap(0, 'n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true})
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts, {noremap = true})
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts, {noremap = true})
+  --vim.api.nvim_buf_set_keymap(0, 'n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true})
   -- ... and other keymappings for LSP
 
   -- Use LSP as the handler for omnifunc.
@@ -72,11 +69,11 @@ require('nvim-tree').setup {
   open_on_tab = true,
   renderer = {
     highlight_git = true,
-    highlight_opened_files = "all"
+    highlight_opened_files = "all",
+    root_folder_label = false
   },
   view = {
-    width = 30,
-    hide_root_folder = true
+    width = 30
   }
 }
 
@@ -98,9 +95,17 @@ require('nvim-ripgrep').setup {}
 
 require('telescope').setup {}
 
+vim.g['airline_theme'] = 'dark'
+vim.g['airline_powerline_fonts'] = 1
+vim.g['pandoc#modules#disabled'] = {'folding'}
+vim.g['mkdp_auto_start'] = 0
+vim.g['gitblame_enabled'] = 0
+
 vim.api.nvim_set_keymap('n', '<leader>ff', "<cmd>lua require('telescope.builtin').find_files()<CR>", {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fg', "<cmd>lua require('telescope.builtin').live_grep()<CR>", {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fb', "<cmd>lua require('telescope.builtin').buffers()<CR>", {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<CR>", {noremap = true})
+
+vim.cmd('colorscheme catppuccin')
 
 vim.g.glow_border = "double"
