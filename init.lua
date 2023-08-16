@@ -1,6 +1,8 @@
 -- these are some things that haven't been ported over from vimscript yet
 vim.cmd 'source ~/.config/nvim/config.vim'
 
+-- May need to install https://github.com/junegunn/vim-plug for this to work
+-- probably should switch to using https://github.com/wbthomason/packer.nvim
 local Plug = vim.fn['plug#']
 vim.call('plug#begin', vim.fn.stdpath('data') .. '/plugged')
 Plug('vim-airline/vim-airline')
@@ -12,7 +14,6 @@ Plug('neovim/nvim-lspconfig')
 Plug('microsoft/pyright')
 Plug('nvim-tree/nvim-web-devicons')
 Plug('nvim-tree/nvim-tree.lua')
-
 Plug('pangloss/vim-javascript')
 Plug('folke/trouble.nvim')
 Plug('junegunn/goyo.vim')
@@ -76,7 +77,7 @@ require('nvim-tree').setup {
     width = 30
   }
 }
-
+ 
 require('trouble').setup {}
 
 require('bufferline').setup {
