@@ -29,33 +29,7 @@ Plug('vimwiki/vimwiki')
 Plug('L3MON4D3/LuaSnip')
 vim.call('plug#end')
 
-
--- local custom_lsp_attach = function(client)
---   -- See `:help nvim_buf_set_keymap()` for more information
---   vim.api.nvim_buf_set_keymap(0, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', {noremap = true})
---   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts, {noremap = true})
---   vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts, {noremap = true})
---   --vim.api.nvim_buf_set_keymap(0, 'n', '<c-]>', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap = true})
---   -- ... and other keymappings for LSP
--- 
---   -- Use LSP as the handler for omnifunc.
---   --    See `:help omnifunc` and `:help ins-completion` for more information.
---   vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
--- 
---   -- Use LSP as the handler for formatexpr.
---   --    See `:help formatexpr` for more information.
---   vim.api.nvim_buf_set_option(0, 'formatexpr', 'v:lua.vim.lsp.formatexpr()')
--- 
---   -- For plugins with an `on_attach` callback, call them here. For example:
---   -- require('completion').on_attach()
--- end
-
-require('lspconfig').pyright.setup {
-  on_attach = custom_lsp_attach
-}
-
 -- See: https://github.com/neovim/nvim-lspconfig/tree/52eb2a070a4f389b1be0f98070f81d23e2b1a715#suggested-configuration
-
 local opts = { noremap=true, silent=true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
