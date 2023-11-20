@@ -29,6 +29,10 @@ For language support from [nvim-lspconfig](https://github.com/neovim/nvim-lspcon
 For Markdown preview with [Glow] to work that needs to be installed:
 
     brew install glow
+
+Coding shortcuts:
+
+To organize imports in Python `<space> ca` will call ruff and format things.
    
 [NerdTree]: https://www.nerdfonts.com/
 [Glow]: https://github.com/charmbracelet/glow
