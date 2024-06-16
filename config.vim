@@ -25,13 +25,6 @@ filetype on
 filetype plugin on
 filetype indent on
 
-" \1 to go to tab 1, etc
-nnoremap <leader>1 :b1<CR>
-nnoremap <leader>2 :b2<CR>
-nnoremap <leader>3 :b3<CR>
-nnoremap <leader>4 :b4<CR>
-nnoremap <leader>5 :b5<CR>
-
 " Copy to clipboard with ctrl-c when in visual mode
 vnoremap <C-c> "*y
 

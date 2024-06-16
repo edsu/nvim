@@ -74,6 +74,10 @@ require('lspconfig').rust_analyzer.setup {
   on_attach = custom_lsp_attach
 }
 
+require('lspconfig').ruff_lsp.setup {
+  on_attach = custom_lsp_attach,
+}
+
 require('nvim-tree').setup {
   open_on_tab = true,
   renderer = {
@@ -115,21 +119,16 @@ vim.api.nvim_set_keymap('n', '<leader>fg', "<cmd>lua require('telescope.builtin'
 vim.api.nvim_set_keymap('n', '<leader>fb', "<cmd>lua require('telescope.builtin').buffers()<CR>", {noremap = true})
 vim.api.nvim_set_keymap('n', '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<CR>", {noremap = true})
 
+-- \1 to go to tab 1, etc
+vim.api.nvim_set_keymap('n', '<leader>1', "<cmd>b1<CR>", {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>2', "<cmd>b2<CR>", {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>3', "<cmd>b3<CR>", {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>4', "<cmd>b4<CR>", {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>5', "<cmd>b5<CR>", {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>6', "<cmd>b6<CR>", {noremap = true})
+vim.api.nvim_set_keymap('n', '<leader>7', "<cmd>b7<CR>", {noremap = true})
+
+
 vim.cmd('colorscheme catppuccin')
 
 vim.g.glow_border = "double"
-
--- Configure `ruff-lsp`.
--- See: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
--- For the default config, along with instructions on how to customize the settings
-require('lspconfig').ruff_lsp.setup {
-  on_attach = custom_lsp_attach,
-  init_options = {
-    settings = {
-      -- Any extra CLI arguments for `ruff` go here.
-      args = {},
-    }
-  }
-}
-
-

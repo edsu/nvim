@@ -1,6 +1,8 @@
 # nvim
 
-This is my [neovim](https://neovim.io/) setup that I started experimenting with in December 2021 after many years of using vim proper. Typically it goes in `~/.config/nvim`. It has some minor language specific configuration (indents, etc) and also sets up some plugins that I like to use like:
+This is my [neovim](https://neovim.io/) setup that I started experimenting with in December 2021 after many years of using vim proper.
+
+First install [vim-plug]. The clone this repo into `~/.config/nvim`. It has some minor language specific configuration (indents, etc) and also sets up some plugins that I like to use like:
 
 * [vim-airline](https://github.com/vim-airline/vim-airline): a visually pleasing & informative status bar
 * [vim-pencil](https://github.com/preservim/vim-pencil): some nice defaults for writing prose instead of code
@@ -11,11 +13,7 @@ This is my [neovim](https://neovim.io/) setup that I started experimenting with 
 * [glow.nvim](https://github.com/ellisonleao/glow.nvim): viewing markdown in editor
 * [nvim-telescope](https://github.com/nvim-telescope/telescope.nvim): use ripgrep to search files quickly
 
-For powerline and nvim-tree to display properly a [NerdTree] font is needed. Download one like Inconsolata, Hack, etc and:
-
-1. unzip <font.zip>
-2. mv *.ttf ~/.local/share/fonts
-3. fc-cache -v
+For powerline and nvim-tree to display properly a [NerdTree] font is needed. I use `Hack Nerd Font Mono`. After you download the ZIP, unzip it and use Font Book to install the .ttf files.
 
 For language support from [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md):
 
@@ -36,3 +34,4 @@ To organize imports in Python `<space> ca` will call ruff and format things.
    
 [NerdTree]: https://www.nerdfonts.com/
 [Glow]: https://github.com/charmbracelet/glow
+[VimPlug]: https://github.com/junegunn/vim-plug
