@@ -66,7 +66,7 @@ require('lspconfig').solargraph.setup {
   on_attach = custom_lsp_attach
 }
 
-require('lspconfig').tsserver.setup {
+require('lspconfig').ts_ls.setup {
   on_attach = custom_lsp_attach
 }
 
@@ -131,4 +131,12 @@ vim.api.nvim_set_keymap('n', '<leader>7', "<cmd>b7<CR>", {noremap = true})
 
 vim.cmd('colorscheme catppuccin')
 
+require('glow').setup {}
 vim.g.glow_border = "double"
+
+vim.filetype.add({
+  extension = {
+    tf = 'yaml',
+    md = 'markdown.pandoc'
+  }
+})

@@ -31,10 +31,6 @@ vnoremap <C-c> "*y
 " Toggle File Tree View
 nnoremap <C-space> :NvimTreeToggle<CR>
 
-augroup pandoc_syntax
-  au! BufNewFile,BufFilePre,BufRead *.md set filetype=markdown.pandoc
-augroup END
-
 autocmd FileType ruby setlocal omnifunc=LanguageClient#complete
 
 let g:vimwiki_list = [{ 'path': '~/Dropbox/Journal/', 'syntax': 'markdown', 'ext': '.md'}]
