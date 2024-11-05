@@ -27,6 +27,7 @@ Plug('nvim-telescope/telescope.nvim')
 Plug('ellisonleao/glow.nvim')
 Plug('vimwiki/vimwiki')
 Plug('L3MON4D3/LuaSnip')
+Plug('hashivim/vim-terraform')
 vim.call('plug#end')
 
 -- See: https://github.com/neovim/nvim-lspconfig/tree/52eb2a070a4f389b1be0f98070f81d23e2b1a715#suggested-configuration
@@ -136,7 +137,6 @@ vim.g.glow_border = "double"
 
 vim.filetype.add({
   extension = {
-    tf = 'yaml',
     md = 'markdown.pandoc'
   }
 })
