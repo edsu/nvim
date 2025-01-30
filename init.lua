@@ -75,7 +75,7 @@ require('lspconfig').rust_analyzer.setup {
   on_attach = custom_lsp_attach
 }
 
-require('lspconfig').ruff_lsp.setup {
+require('lspconfig').ruff.setup {
   on_attach = custom_lsp_attach,
 }
 

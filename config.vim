@@ -33,7 +33,10 @@ nnoremap <C-space> :NvimTreeToggle<CR>
 
 autocmd FileType ruby setlocal omnifunc=LanguageClient#complete
 
+" Only enable vimwiki in my Journal since it gets in the way when editing other Markdown
 let g:vimwiki_list = [{ 'path': '~/Dropbox/Journal/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_global_ext = 0
 let g:vimwiki_url_maxsave=0
 
+" put yanked text on the clipboard for pasting
 set clipboard+=unnamedplus
