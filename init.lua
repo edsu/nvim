@@ -11,11 +11,9 @@ Plug('vim-pandoc/vim-pandoc')
 Plug('vim-pandoc/vim-pandoc-syntax')
 Plug('preservim/vim-pencil')
 Plug('neovim/nvim-lspconfig')
-Plug('microsoft/pyright')
 Plug('nvim-tree/nvim-web-devicons')
 Plug('nvim-tree/nvim-tree.lua')
 Plug('pangloss/vim-javascript')
-Plug('folke/trouble.nvim')
 Plug('junegunn/goyo.vim')
 Plug('catppuccin/nvim', {as = 'catppuccin'})
 Plug('akinsho/bufferline.nvim')
@@ -63,21 +61,33 @@ local custom_lsp_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
-require('lspconfig').solargraph.setup {
-  on_attach = custom_lsp_attach
-}
-
-require('lspconfig').ts_ls.setup {
-  on_attach = custom_lsp_attach
-}
-
-require('lspconfig').rust_analyzer.setup {
-  on_attach = custom_lsp_attach
-}
-
-require('lspconfig').ruff.setup {
+vim.lsp.config('solargraph', {
   on_attach = custom_lsp_attach,
-}
+  settings = {
+  }
+})
+vim.lsp.enable('solargraph')
+
+vim.lsp.config('ruff', {
+  on_attach = custom_lsp_attach,
+  settings = {
+  }
+})
+vim.lsp.enable('ruff')
+
+vim.lsp.config('ts_ls', {
+  on_attach = custom_lsp_attach,
+  settings = {
+  }
+})
+vim.lsp.enable('ts_ls')
+
+vim.lsp.config('rust_analyzer', {
+  on_attach = custom_lsp_attach,
+  settings = {
+  }
+})
+vim.lsp.enable('rust_analyzer')
 
 require('nvim-tree').setup {
   open_on_tab = true,
@@ -91,8 +101,6 @@ require('nvim-tree').setup {
   }
 }
  
-require('trouble').setup {}
-
 require('bufferline').setup {
   options = {
     numbers = "buffer_id",
@@ -140,3 +148,23 @@ vim.filetype.add({
     md = 'markdown.pandoc'
   }
 })
+
+vim.diagnostic.config(
+  {
+    underline = true,
+    virtual_text = {
+      spacing = 2,
+    },
+    update_in_insert = true,
+    severity_sort = true,
+    signs = {
+      text = {
+        [vim.diagnostic.severity.ERROR] = " ", 
+        [vim.diagnostic.severity.WARN] = " ",
+        [vim.diagnostic.severity.HINT] = " ",
+        [vim.diagnostic.severity.INFO] = " ",
+      },
+    },
+  }
+)
+
