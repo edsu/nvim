@@ -152,9 +152,7 @@ vim.filetype.add({
 vim.diagnostic.config(
   {
     underline = true,
-    virtual_text = {
-      spacing = 2,
-    },
+    virtual_text = true,
     update_in_insert = true,
     severity_sort = true,
     signs = {
