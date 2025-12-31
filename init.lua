@@ -28,13 +28,6 @@ Plug('L3MON4D3/LuaSnip')
 Plug('hashivim/vim-terraform')
 vim.call('plug#end')
 
--- See: https://github.com/neovim/nvim-lspconfig/tree/52eb2a070a4f389b1be0f98070f81d23e2b1a715#suggested-configuration
-local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local custom_lsp_attach = function(client, bufnr)
@@ -59,6 +52,12 @@ local custom_lsp_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+
+  -- See: https://github.com/neovim/nvim-lspconfig/tree/52eb2a070a4f389b1be0f98070f81d23e2b1a715#suggested-configuration
+  vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, bufopts)
+  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, bufopts)
+  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, bufopts)
+  vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, bufopts)
 end
 
 vim.lsp.config('solargraph', {
@@ -85,6 +84,16 @@ vim.lsp.enable('ts_ls')
 vim.lsp.config('rust_analyzer', {
   on_attach = custom_lsp_attach,
   settings = {
+    ["rust-analyzer"] = {
+        check = {
+            command = "clippy"
+        },
+        cargo = {
+            buildScripts = {
+                enable = true
+            }
+        }
+    }
   }
 })
 vim.lsp.enable('rust_analyzer')
