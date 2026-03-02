@@ -17,7 +17,8 @@ For powerline and nvim-tree to display properly a [NerdTree] font is needed. I u
 
 For language support from [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md):
 
-    $ pip install ruff-lsp
+    $ curl -LsSf https://astral.sh/uv/install.sh | sh
+    $ uv tool install ruff ty
     $ npm install -g pyright typescript-language-server typescript
     $ brew install rust-analyzer
     $ gem install solargraph
