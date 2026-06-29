@@ -1,5 +1,33 @@
--- these are some things that haven't been ported over from vimscript yet
-vim.cmd 'source ~/.config/nvim/config.vim'
+-- General settings (migrated from config.vim)
+vim.opt.mouse = 'n'
+vim.opt.background = 'dark'
+vim.opt.fileencodings = 'utf-8'
+vim.opt.autoindent = true
+vim.opt.tabstop = 8
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.smarttab = true
+vim.opt.smartcase = true
+vim.opt.showmatch = true
+vim.opt.showmode = true
+vim.opt.incsearch = true
+vim.opt.hlsearch = true
+vim.opt.ignorecase = true
+vim.opt.infercase = true
+vim.opt.textwidth = 80
+vim.opt.matchpairs = { '{:}', '[:]', '(:)', '<:>', '`:`' }
+
+-- copy to clipboard with ctrl-c in visual mode
+vim.keymap.set('v', '<C-c>', '"*y')
+-- toggle file tree view
+vim.keymap.set('n', '<C-Space>', '<cmd>NvimTreeToggle<CR>')
+
+-- vimwiki: only enable in my Journal since it gets in the way when editing
+-- other Markdown (must be set before the plugins load below)
+vim.g.vimwiki_list = { { path = '~/Dropbox/Journal/', syntax = 'markdown', ext = '.md' } }
+vim.g.vimwiki_global_ext = 0
+vim.g.vimwiki_url_maxsave = 0
 
 -- May need to install https://github.com/junegunn/vim-plug for this to work
 -- probably should switch to using https://github.com/wbthomason/packer.nvim
