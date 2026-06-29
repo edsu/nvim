@@ -62,6 +62,11 @@ local custom_lsp_attach = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
+  -- Native auto-popup completion (Neovim 0.11+) for servers that support it
+  if client:supports_method('textDocument/completion') then
+    vim.lsp.completion.enable(true, client.id, bufnr, { autotrigger = true })
+  end
+
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
@@ -88,12 +93,11 @@ local custom_lsp_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, bufopts)
 end
 
-vim.lsp.config('solargraph', {
+-- ruby-lsp (Shopify) provides completion / hover / go-to-def / diagnostics
+vim.lsp.config('ruby_lsp', {
   on_attach = custom_lsp_attach,
-  settings = {
-  }
 })
-vim.lsp.enable('solargraph')
+vim.lsp.enable('ruby_lsp')
 
 vim.lsp.config('ruff', {
   on_attach = custom_lsp_attach,
@@ -101,6 +105,13 @@ vim.lsp.config('ruff', {
   }
 })
 vim.lsp.enable('ruff')
+
+-- basedpyright handles completion / hover / go-to-def / type-checking for Python
+-- (ruff above only does linting + formatting)
+vim.lsp.config('basedpyright', {
+  on_attach = custom_lsp_attach,
+})
+vim.lsp.enable('basedpyright')
 
 vim.lsp.config('ts_ls', {
   on_attach = custom_lsp_attach,

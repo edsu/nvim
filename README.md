@@ -19,15 +19,33 @@ For language support from [nvim-lspconfig](https://github.com/neovim/nvim-lspcon
 
     $ curl -LsSf https://astral.sh/uv/install.sh | sh
     $ uv tool install ruff ty
-    $ npm install -g pyright typescript-language-server typescript
+    $ pipx install basedpyright
+    $ npm install -g typescript-language-server typescript
     $ brew install rust-analyzer
-    $ gem install solargraph
-    $ solargraph download-core
-    $ yard docs gems
+    $ gem install ruby-lsp
  
 For Markdown preview with [Glow] to work that needs to be installed:
 
     brew install glow
+
+## Code completion
+
+Completion is driven entirely by the language servers configured in `init.lua` —
+there is no separate completion plugin (nvim-cmp, blink, etc). When an LSP that
+supports completion attaches to a buffer, Neovim's built-in `vim.lsp.completion`
+is enabled with autotrigger (see `custom_lsp_attach` in `init.lua`), so a popup
+menu appears as you type. The keys are:
+
+* `<C-n>` / `<C-p>`: move down / up in the completion menu
+* `<C-y>` or `Enter`: accept the highlighted item
+* `<C-e>`: dismiss the menu
+* `<C-x><C-o>`: trigger completion manually (omni-completion)
+
+Not every server offers completion. For Python, `ruff` only does linting and
+formatting, so `basedpyright` is enabled alongside it to provide completion,
+hover (`K`), go-to-definition (`gd`), and type-checking. The same pattern holds
+for the other languages: any configured LSP that advertises completion will
+drive the popup automatically.
 
 Coding shortcuts:
 
