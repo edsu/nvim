@@ -175,3 +175,6 @@ vim.diagnostic.config(
   }
 )
 
+-- put yanked text on the clipboard for pasting
+vim.opt.clipboard = 'unnamedplus'
+
