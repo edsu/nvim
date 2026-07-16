@@ -47,10 +47,49 @@ hover (`K`), go-to-definition (`gd`), and type-checking. The same pattern holds
 for the other languages: any configured LSP that advertises completion will
 drive the popup automatically.
 
-Coding shortcuts:
+## Interacting with LSP
 
-To organize imports in Python `<space> ca` will call ruff and format things.
-   
+Once a language server has attached to a buffer, these keys (defined in
+`custom_lsp_attach` in `init.lua`) let you navigate and act on the code. They
+work in normal mode; `<space>` is the leader-style prefix.
+
+Looking things up:
+
+* `K`: **hover** — show docs, type, and signature for the symbol under the
+  cursor in a floating window. Press `K` again to jump into that window so you
+  can scroll it (and `q` or `<Esc>` to close it). This is the one to reach for
+  most — a quick "what is this?" without leaving the file.
+* `<C-k>`: **signature help** — show the current function's parameters while
+  you're writing a call.
+
+Jumping around the code:
+
+* `gd`: go to **definition** of the symbol under the cursor
+* `gD`: go to **declaration**
+* `gi`: go to **implementation**
+* `gr`: list **references** (everywhere the symbol is used)
+* `<space>D`: go to the symbol's **type definition**
+
+Use `<C-o>` to jump back to where you were, and `<C-i>` to jump forward again.
+
+Changing the code:
+
+* `<space>rn`: **rename** the symbol everywhere (safer than a find/replace)
+* `<space>ca`: **code action** — apply a fix or refactor the server offers. In
+  Python this is how you organize imports and let ruff clean things up.
+* `<space>f`: **format** the buffer via the language server
+
+Diagnostics (errors, warnings, hints):
+
+* `<space>e`: show the full diagnostic message under the cursor in a float
+* `[d` / `]d`: jump to the **previous** / **next** diagnostic
+* `<space>q`: put all diagnostics into the location list
+
+Workspace folders (rarely needed for single-project editing):
+
+* `<space>wa` / `<space>wr`: add / remove a workspace folder
+* `<space>wl`: list the current workspace folders
+
 [NerdTree]: https://www.nerdfonts.com/
 [Glow]: https://github.com/charmbracelet/glow
 [VimPlug]: https://github.com/junegunn/vim-plug

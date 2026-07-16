@@ -18,6 +18,9 @@ vim.opt.infercase = true
 vim.opt.textwidth = 80
 vim.opt.matchpairs = { '{:}', '[:]', '(:)', '<:>', '`:`' }
 
+-- add a border to floating windows (LSP hover, signature help, diagnostics, etc.)
+vim.o.winborder = 'rounded'
+
 -- copy to clipboard with ctrl-c in visual mode
 vim.keymap.set('v', '<C-c>', '"*y')
 -- toggle file tree view
