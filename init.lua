@@ -109,12 +109,19 @@ vim.lsp.config('ruff', {
 })
 vim.lsp.enable('ruff')
 
--- basedpyright handles completion / hover / go-to-def / type-checking for Python
--- (ruff above only does linting + formatting)
-vim.lsp.config('basedpyright', {
+-- ty (Astral) covers everything else for Python: type-checking diagnostics plus
+-- completion, hover, go-to-def, references, rename, and signature help.
+--
+-- basedpyright used to sit here for the navigation half, but ty provides all of
+-- it, and running both meant duplicate completion entries and ambiguous `gd`.
+-- basedpyright was also the source of type errors that `ty check` never
+-- reported: it only reads [tool.basedpyright] / [tool.pyright] from
+-- pyproject.toml, so in a repo configured for mypy or ty it ignored that config
+-- and fell back to its strict "recommended" defaults.
+vim.lsp.config('ty', {
   on_attach = custom_lsp_attach,
 })
-vim.lsp.enable('basedpyright')
+vim.lsp.enable('ty')
 
 vim.lsp.config('ts_ls', {
   on_attach = custom_lsp_attach,
