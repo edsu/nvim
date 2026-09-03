@@ -57,6 +57,7 @@ Plug('ellisonleao/glow.nvim')
 Plug('vimwiki/vimwiki')
 Plug('L3MON4D3/LuaSnip')
 Plug('hashivim/vim-terraform')
+Plug('lewis6991/gitsigns.nvim')
 vim.call('plug#end')
 
 -- Use an on_attach function to only map the following keys
@@ -174,6 +175,8 @@ require('bufferline').setup {
 require('nvim-ripgrep').setup {}
 
 require('telescope').setup {}
+
+require('gitsigns').setup {}
 
 vim.g['airline_theme'] = 'dark'
 vim.g['airline_powerline_fonts'] = 1
