@@ -124,10 +124,30 @@ vim.lsp.config('ty', {
 })
 vim.lsp.enable('ty')
 
+-- typescript-language-server ships no TypeScript of its own: it needs a
+-- `typescript` package to run tsserver.js, and looks for one in the workspace.
+-- Plain-JS projects have none, and because mise installs every npm package in
+-- its own isolated tree the server has no bundled copy to fall back on either,
+-- so it exits with "Could not find a valid TypeScript installation".
+--
+-- `fallbackPath` is consulted *after* the workspace, so a project that does
+-- depend on typescript still gets its own pinned version. (`tsserver.path`
+-- would take priority over the workspace and is the wrong knob here.)
+--
+-- Pinned to the 5.x line on purpose: TypeScript 7 is the native Go rewrite and
+-- dropped tsserver.js entirely, so this server cannot drive it at any version.
+-- TS 7 speaks LSP itself instead; see README.md for that migration path.
+local ts_init_options = {}
+local global_tsserver = vim.fn.expand(
+  '~/.local/share/mise/installs/npm-typescript/5/node_modules/typescript/lib/tsserver.js'
+)
+if vim.uv.fs_stat(global_tsserver) then
+  ts_init_options.tsserver = { fallbackPath = global_tsserver }
+end
+
 vim.lsp.config('ts_ls', {
   on_attach = custom_lsp_attach,
-  settings = {
-  }
+  init_options = ts_init_options,
 })
 vim.lsp.enable('ts_ls')
 

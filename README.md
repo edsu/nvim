@@ -55,15 +55,39 @@ toolchain and survives Rust upgrades.
 
 One server can't be handled this way. `typescript-language-server` has to load
 the `typescript` package itself, and mise gives every npm tool a private
-`node_modules`, so a globally installed copy is invisible to it. Let each
-project provide its own `typescript` devDependency — normal practice, and it
-keeps the editor pinned to the same compiler the project builds with.
+`node_modules`, so a globally installed copy is invisible to it. A project with
+its own `typescript` devDependency is fine, and is still the best case — the
+editor stays pinned to the compiler the project builds with. But a plain-JS
+project has no such dependency, and then the server finds nothing at all and
+exits with "Could not find a valid TypeScript installation". `init.lua` handles
+that by pointing `ts_ls` at a mise-managed 5.x copy via the server's
+`tsserver.fallbackPath` option, which is consulted only *after* the workspace
+lookup, so a project's own TypeScript still wins.
 
-Note that `typescript` 7.0 is the native Go rewrite and no longer ships the
-`lib/tsserver.js` that `typescript-language-server` loads, so a project on TS 7
-gets no LSP. Pin projects to `typescript@5` for now. nvim-lspconfig has a `tsgo`
-server for the new native one, but as of August 2026 the only thing shipping
-that binary is a stale `@typescript/native-preview` dev build.
+### Why TypeScript 5, and when to move to 7
+
+`typescript` 7.0 is the native Go rewrite. It dropped the `lib/tsserver.js` that
+`typescript-language-server` loads, so it cannot be driven through that server at
+all — hence the `@5` pin, both for the global fallback and for the smoke test
+fixture.
+
+The replacement is not a new wrapper: the native binary speaks LSP itself. As of
+TypeScript 7.0.2 that works, verified by hand — `npm install typescript@7` pulls
+a platform package (`@typescript/typescript-darwin-arm64` here) whose binary
+answers a real `initialize` request:
+
+    $ ./node_modules/@typescript/typescript-darwin-arm64/lib/tsc --lsp --stdio
+
+So the move to 7 means dropping `typescript-language-server` for that binary,
+not waiting on it. What blocks it here is only the bin name: nvim-lspconfig's
+`tsgo` config runs `tsgo --lsp --stdio`, and `tsgo` ships in
+`@typescript/native-preview`, whose newest build is still a dev snapshot
+(`7.0.0-dev.20260707.2`, July 2026). Stable `typescript@7` installs the same
+server as `tsc`, so switching means enabling `tsgo` with `cmd` overridden to
+`{ 'tsc', '--lsp', '--stdio' }`.
+
+Not yet evaluated: whether the native server's completion, hover, and rename are
+good enough for daily use. Worth a `test/smoke.sh` case before switching over.
 
 ### Checking it still works
 

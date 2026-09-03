@@ -90,6 +90,25 @@ TS
   run_case typescript "$d" main.ts ts_ls 1
 }
 
+fixture_javascript() {
+  local d=$FIXTURES/javascript
+  mkdir -p "$d"
+  # Deliberately no typescript dependency, and no tsconfig. This is the case
+  # that broke: a plain-JS project gives typescript-language-server no
+  # workspace tsserver.js to load, so it only starts if init.lua hands it a
+  # global fallback. Do not "fix" this fixture by installing typescript --
+  # that is what the typescript case above covers.
+  printf '{"name":"smoke","private":true,"version":"1.0.0"}\n' > "$d/package.json"
+  cat > "$d/main.js" <<'JS'
+// @ts-check
+/** @type {number} */
+const pages = "720";
+JS
+  # @ts-check is what makes tsserver type-check plain JS, so a diagnostic here
+  # proves tsserver really came up rather than just that the process spawned.
+  run_case javascript "$d" main.js ts_ls 1
+}
+
 fixture_ruby() {
   local d=$FIXTURES/ruby
   mkdir -p "$d"
@@ -124,7 +143,7 @@ RS
 
 # --- main -----------------------------------------------------------------
 
-ALL=(python typescript ruby rust)
+ALL=(python typescript javascript ruby rust)
 CASES=("$@")
 if [ ${#CASES[@]} -eq 0 ]; then
   CASES=("${ALL[@]}")
@@ -137,6 +156,7 @@ for c in "${CASES[@]}"; do
   case $c in
     python)     fixture_python ;;
     typescript) fixture_typescript ;;
+    javascript) fixture_javascript ;;
     ruby)       fixture_ruby ;;
     rust)       fixture_rust ;;
     *) echo "  unknown case: $c (known: ${ALL[*]})"; FAIL=$((FAIL + 1)) ;;
