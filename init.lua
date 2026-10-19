@@ -53,11 +53,11 @@ Plug('rinx/nvim-ripgrep')
 Plug('f-person/git-blame.nvim')
 Plug('nvim-lua/plenary.nvim')
 Plug('nvim-telescope/telescope.nvim')
-Plug('ellisonleao/glow.nvim')
 Plug('vimwiki/vimwiki')
 Plug('L3MON4D3/LuaSnip')
 Plug('hashivim/vim-terraform')
 Plug('lewis6991/gitsigns.nvim')
+Plug('MeanderingProgrammer/render-markdown.nvim')
 vim.call('plug#end')
 
 -- Use an on_attach function to only map the following keys
@@ -221,8 +221,9 @@ vim.api.nvim_set_keymap('n', '<leader>7', "<cmd>b7<CR>", {noremap = true})
 
 vim.cmd('colorscheme catppuccin')
 
-require('glow').setup {}
-vim.g.glow_border = "double"
+require('render-markdown').setup {
+  completions = { lsp = { enable = true } },
+}
 
 vim.filetype.add({
   extension = {
