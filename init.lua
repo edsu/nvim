@@ -57,7 +57,7 @@ Plug('vimwiki/vimwiki')
 Plug('L3MON4D3/LuaSnip')
 Plug('hashivim/vim-terraform')
 Plug('lewis6991/gitsigns.nvim')
-Plug('MeanderingProgrammer/render-markdown.nvim')
+Plug('jannis-baum/vivify.vim')
 vim.call('plug#end')
 
 -- Use an on_attach function to only map the following keys
@@ -221,10 +221,6 @@ vim.api.nvim_set_keymap('n', '<leader>7', "<cmd>b7<CR>", {noremap = true})
 
 vim.cmd('colorscheme catppuccin')
 
-require('render-markdown').setup {
-  completions = { lsp = { enable = true } },
-}
-
 vim.filetype.add({
   extension = {
     md = 'markdown.pandoc'
@@ -251,3 +247,8 @@ vim.diagnostic.config(
 -- put yanked text on the clipboard for pasting
 vim.opt.clipboard = 'unnamedplus'
 
+-- render markdown in browser with vivify (but with my own command)
+vim.api.nvim_create_user_command('Markdown', 'Viv', {})
+
+-- show the LSP completion menu without inserting anything until I pick an item
+vim.opt.completeopt = { 'menu', 'menuone', 'noinsert', 'popup' }

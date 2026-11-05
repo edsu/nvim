@@ -10,8 +10,8 @@ First install [vim-plug]. Then clone this repo into `~/.config/nvim`. It has som
 * [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig): language server support for python, ruby, javascript, etc
 * [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua): a file explorer
 * [goyo](https://github.com/junegunn/goyo.vim): distraction free writing
-* [glow.nvim](https://github.com/ellisonleao/glow.nvim): viewing markdown in editor
 * [nvim-telescope](https://github.com/nvim-telescope/telescope.nvim): use ripgrep to search files quickly
+* [vivify](https://github.com/jannis-baum/vivify): render markdown in a browser tab
 
 For powerline and nvim-tree to display properly a [NerdTree] font is needed. I use `Hack Nerd Font Mono`. After you download the ZIP, unzip it and use Font Book to install the .ttf files.
 
@@ -100,10 +100,16 @@ It builds a throwaway project per language in a temp directory, opens a file in
 headless nvim, and checks the expected servers attach (and, where the server
 reports them, that diagnostics actually arrive). It exits non-zero on failure,
 naming what did not come up. Worth running after any mise upgrade.
- 
-For Markdown preview with [Glow] to work that needs to be installed:
 
-    brew install glow
+## Markdown
+
+You should be able to view a buffer of markdown rendered in the browser using
+the `:Markdown` command (aliased from Vivify).
+
+To open a URL while editing, put the cursor on it and press `gx`, or
+shift-cmd-click it in Ghostty. A plain cmd-click doesn't work because
+`mouse = 'n'` makes Neovim take the click in normal mode; holding shift lets
+it through to Ghostty.
 
 ## Code completion
 
@@ -179,6 +185,5 @@ Workspace folders (rarely needed for single-project editing):
 * `<space>wl`: list the current workspace folders
 
 [NerdTree]: https://www.nerdfonts.com/
-[Glow]: https://github.com/charmbracelet/glow
 [VimPlug]: https://github.com/junegunn/vim-plug
 [mise]: https://mise.jdx.dev/
